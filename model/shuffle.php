@@ -49,7 +49,7 @@ if (isset($_POST["submitShuffle"])) {
     $ageStart = $_POST['age_start'];
     // $ageEnd = $_POST['age_end'];
 
-    $sql = "SELECT * FROM tbl_employee WHERE stat = 'Normal' AND `status`!=3 ";
+    $sql = "SELECT * FROM tbl_employee WHERE stat = 'Fit' AND `status`!=3 ";
     $teamSizeSQL = "SELECT COUNT(*) as teamCount FROM tbl_teams ";
     $result = $conn->query($teamSizeSQL);
 

@@ -18,6 +18,10 @@ $stat 	= $conn->real_escape_string($_POST['stat']);
 $dept 		= $conn->real_escape_string($_POST['dept']);
 
 
+$sports = array();
+if (isset($_POST["sportsAdd"])) {
+	$sports = $_POST["sportsAdd"];
+}
 
 // change profile2 name
 // $newName = date('dmYHis').str_replace(" ", "", $profile2);
@@ -29,11 +33,29 @@ $nat = $conn->query($check)->num_rows;
 if ($nat == 0) {
 	if (!empty($fname)) {
 
-
 		$query = "INSERT INTO tbl_employee (`fname`, `contact`,`stat`,`mname`, `lname`, `emp_id_no`, `age`, `gender`, `dept`,`status`) 
 						VALUES ('$fname','$contact','$stat','$mname','$lname','$employee_id','$age','$gender','$dept',2)";
 
-		if ($conn->query($query) === true) {
+		$employeeStored = $conn->query($query);
+
+		// Check if the query was successful
+		if ($employeeStored) {
+			// Get the last inserted ID
+			$lastInsertedID = $conn->insert_id;
+
+			foreach ($sports as $sport) {
+				// create new if not found
+
+				// find the sports id in sports table
+				$checkSport2 = "SELECT * FROM tbl_sports WHERE `name` = '$sport' AND type IS NULL";
+				$found3 = $conn->query($checkSport2)->fetch_assoc();
+				
+				$newName = $found3["name"];
+			
+				$query = "INSERT INTO tbl_sports (`emp_id`, `type`, `name`,`status`) VALUES ($lastInsertedID,2,'$newName',2)";
+				$conn->query($query);
+
+			}
 
 			$_SESSION['message'] = 'Employee Information has been added.';
 			$_SESSION['success'] = 'success';

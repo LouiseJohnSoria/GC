@@ -30,8 +30,11 @@ $result6 = $conn->query($query6);
 $no_sports = $result6->num_rows;
 
 $Leave = "On-Leave";
-$Normal = "Normal";
-$Health = "Health-Issue";
+$Normal = "Fit";
+$Health = "Unfit";
+
+$OfficialTime ="On Official Time";
+$OfficialBusiness ="On Official Business";
 
 $query7 = "SELECT * FROM tbl_employee WHERE stat = '$Leave'  AND `status`!=3";
 $result7 = $conn->query($query7);
@@ -48,6 +51,16 @@ $Health = $result9->num_rows;
 $query9 = "SELECT * FROM tbl_sports WHERE type IS NULL  ";
 $result9 = $conn->query($query9);
 $sports = $result9->num_rows;
+
+$query10  = "SELECT * FROM tbl_employee WHERE stat = '$OfficialTime'  AND `status`!=3 ";
+$result10 = $conn->query($query10 );
+$OfficialTime = $result10->num_rows;
+
+$query11  = "SELECT * FROM tbl_employee WHERE stat = '$OfficialBusiness'  AND `status`!=3 ";
+$result11 = $conn->query($query11 );
+$OfficialBusiness = $result11->num_rows;
+
+
 
 
 // for team leader
@@ -135,11 +148,11 @@ $total_no_sports = $result11->num_rows;
 											<div class="numbers mt-4">
 												<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'administrator') : ?>
 													<h2 class="fw-bold text-uppercase">Employees</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($total) ?></h3>
+													<h1 class="fw-bold text-uppercase"><?= number_format($total) ?></h1>
 
 												<?php else : ?>
 													<h2 class="fw-bold text-uppercase">Members</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($total_members) ?></h3>
+													<h1 class="fw-bold text-uppercase"><?= number_format($total_members) ?></h1>
 												<?php endif ?>
 
 											</div>
@@ -166,9 +179,9 @@ $total_no_sports = $result11->num_rows;
 											<div class="numbers mt-4">
 												<h2 class="fw-bold text-uppercase">Male</h2>
 												<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'administrator') : ?>
-													<h3 class="fw-bold"><?= number_format($male) ?></h3>
+													<h1 class="fw-bold"><?= number_format($male) ?></h1>
 												<?php else : ?>
-													<h3 class="fw-bold"><?= number_format($total_male) ?></h3>
+													<h1 class="fw-bold"><?= number_format($total_male) ?></h1>
 												<?php endif ?>
 											</div>
 										</div>
@@ -194,9 +207,9 @@ $total_no_sports = $result11->num_rows;
 											<div class="numbers mt-4">
 												<h2 class="fw-bold text-uppercase">Female</h2>
 												<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'administrator') : ?>
-													<h3 class="fw-bold"><?= number_format($female) ?></h3>
+													<h1 class="fw-bold"><?= number_format($female) ?></h1>
 												<?php else : ?>
-													<h3 class="fw-bold"><?= number_format($total_female) ?></h3>
+													<h1 class="fw-bold"><?= number_format($total_female) ?></h1>
 												<?php endif ?>
 											</div>
 										</div>
@@ -226,9 +239,9 @@ $total_no_sports = $result11->num_rows;
 												<div class="numbers mt-4">
 													<h2 class="fw-bold text-uppercase">With Sport</h2>
 													<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'administrator') : ?>
-														<h3 class="fw-bold"><?= number_format($has_sports) ?></h3>
+														<h1 class="fw-bold"><?= number_format($has_sports) ?></h1>
 													<?php else : ?>
-														<h3 class="fw-bold"><?= number_format($total_has_sports) ?></h3>
+														<h1 class="fw-bold"><?= number_format($total_has_sports) ?></h1>
 													<?php endif ?>
 												</div>
 											</div>
@@ -287,7 +300,7 @@ $total_no_sports = $result11->num_rows;
 											<div class="col-6 col-stats">
 												<div class="numbers mt-4">
 													<h2 class="fw-bold text-uppercase">Teams</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($teams) ?></h3>
+													<h1 class="fw-bold text-uppercase"><?= number_format($teams) ?></h1>
 												</div>
 											</div>
 										</div>
@@ -313,7 +326,7 @@ $total_no_sports = $result11->num_rows;
 											<div class="col-6 col-stats">
 												<div class="numbers mt-4">
 													<h2 class="fw-bold text-uppercase">Sports</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($sports) ?></h3>
+													<h1 class="fw-bold text-uppercase"><?= number_format($sports) ?></h1>
 												</div>
 											</div>
 										</div>
@@ -338,7 +351,7 @@ $total_no_sports = $result11->num_rows;
 												<div class="col-6 col-stats">
 													<div class="numbers mt-4">
 														<h2 class="fw-bold text-uppercase">Users</h2>
-														<h3 class="fw-bold text-uppercase"><?= number_format($users) ?></h3>
+														<h1 class="fw-bold text-uppercase"><?= number_format($users) ?></h1>
 													</div>
 												</div>
 											</div>
@@ -365,8 +378,8 @@ $total_no_sports = $result11->num_rows;
 											</div>
 											<div class="col-6 col-stats">
 												<div class="numbers mt-4">
-													<h2 class="fw-bold text-uppercase">Normal</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($Normal) ?></h3>
+													<h2 class="fw-bold text-uppercase">Fit</h2>
+													<h1 class="fw-bold text-uppercase"><?= number_format($Normal) ?></h1>
 												</div>
 											</div>
 										</div>
@@ -382,7 +395,8 @@ $total_no_sports = $result11->num_rows;
 										<div class="row">
 											<div class="col-3">
 												<div class="icon-big text-center">
-												<i class="bi bi-building-fill-slash"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-building-fill-slash" viewBox="0 0 16 16"> <path d="M13.879 10.414a2.501 2.501 0 0 0-3.465 3.465zm.707.707-3.465 3.465a2.501 2.501 0 0 0 3.465-3.465m-4.56-1.096a3.5 3.5 0 1 1 4.949 4.95 3.5 3.5 0 0 1-4.95-4.95Z"/> 
+												<i class="bi bi-building-fill-slash"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-building-fill-slash" viewBox="0 0 16 16">
+													 <path d="M13.879 10.414a2.501 2.501 0 0 0-3.465 3.465zm.707.707-3.465 3.465a2.501 2.501 0 0 0 3.465-3.465m-4.56-1.096a3.5 3.5 0 1 1 4.949 4.95 3.5 3.5 0 0 1-4.95-4.95Z"/> 
 												<path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-3.59 1.787A.5.5 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.5 4.5 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/> </svg></i>
 												</div>
 											</div>
@@ -390,9 +404,19 @@ $total_no_sports = $result11->num_rows;
 											</div>
 											<div class="col-6 col-stats">
 												<div class="numbers mt-4">
-													<h2 class="fw-bold text-uppercase">On-Leave</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($Leave) ?></h3>
+													<h2 class="fw-bold text-uppercase">OL&nbsp; / &nbsp;</h2>
+													<h1 class="fw-bold text-uppercase"><?= number_format($Leave) ?> /</h1>
 												</div>
+												<div class="numbers mt-4">
+													<h2 class="fw-bold text-uppercase"> OT / &nbsp;</h2>
+													<h1 class="fw-bold text-uppercase"><?= number_format($OfficialTime)?> /</h1>
+												</div>
+												<div class="numbers mt-4">
+													<h2 class="fw-bold text-uppercase"> OB</h2>
+													<h1 class="fw-bold text-uppercase"><?= number_format($OfficialBusiness) ?></h1>
+													<!-- total -->
+													</div>
+												
 											</div>
 										</div>
 									</div>
@@ -415,8 +439,8 @@ $total_no_sports = $result11->num_rows;
 											</div>
 											<div class="col-6 col-stats">
 												<div class="numbers mt-4">
-													<h2 class="fw-bold text-uppercase">Health Issue's</h2>
-													<h3 class="fw-bold text-uppercase"><?= number_format($Health) ?></h3>
+													<h2 class="fw-bold text-uppercase">Unfit</h2>
+													<h1 class="fw-bold text-uppercase"><?= number_format($Health) ?></h1>
 												</div>
 											</div>
 										</div>

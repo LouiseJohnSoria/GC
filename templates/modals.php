@@ -333,17 +333,29 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Employee Status</label>
+                                        <label>Status</label>
                                         <select class="form-control" name="stat" id="stat" required>
-                                            <option disabled selected value="">Select Status</option>
-                                            <option value="Normal">Normal</option>
+                                        <option disabled selected value="">Select Status</option>
+                                            <option value="Fit">Fit</option>
+                                            <option value="Unfit">Unfit</option>
                                             <option value="On-Leave">On Leave</option>
-                                            <option value="Health-Issue">Health Issue's</option>
+                                            <option value="On Official Time ">On Official Time</option>
+                                            <option value="On Official Business">On Official Business</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Sports</label>
+                                        <select class="form-control" name="sportsAdd[]" id="sportsAdd" size="5" multiple>
+                                            <!-- <option disabled selected>Select Sports</option> -->
+                                            <?php foreach ($sports as $row) : ?>
+                                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div> 
+                                </div>
                         </div>
                     </div>
             </div>
@@ -433,37 +445,40 @@
                             </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Employee Status</label>
+                                        <label>Status</label>
                                         <select class="form-control" name="stat" id="statedit" required>
-                                            <option value="Normal">Normal</option>
+                                            <option value="Fit">Fit</option>
+                                            <option value="Unfit">Unfit</option>
                                             <option value="On-Leave">On Leave</option>
-                                            <option value="Health-Issue">Health Issue's</option>
+                                            <option value="On Official Time ">On Official Time</option>
+                                            <option value="On Official Business">On Official Business</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Sports</label>
-                                <select class="form-control" name="sports[]" id="sports" size="5" multiple>
-                                    <!-- <option disabled selected>Select Sports</option> -->
-                                    <?php foreach ($sports as $row) : ?>
-                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div> 
+                                    <div class="form-group">
+                                        <label>Sports</label>
+                                        <select class="form-control" name="sports[]" id="sports" size="5" multiple>
+                                            <!-- <option disabled selected>Select Sports</option> -->
+                                            <?php foreach ($sports as $row) : ?>
+                                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div> 
                                 </div>
                                 <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Team</label>
-                                <select class="form-control" name="team" id="team">
-                                    <option disabled selected>Select Team</option>
-                                    <?php foreach ($teams as $row) : ?>
-                                        <option value="<?= $row['team_name'] ?>"><?= $row['team_name'] ?></option>
-                                    <?php endforeach ?>
-                                </select>
+                                    <div class="form-group">
+                                        <label>Team</label>
+                                        <select class="form-control" name="team" id="team">
+                                            <option disabled selected>Select Team</option>
+                                            <?php foreach ($teams as $row) : ?>
+                                                <option value="<?= $row['team_name'] ?>"><?= $row['team_name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
                         </div>
             </div>
             <div class="modal-footer">
