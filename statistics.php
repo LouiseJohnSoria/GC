@@ -121,52 +121,51 @@ $conn->close();
 				</div>	
 				<br>
 				<div class="row">
-				<div class="col-md-3 offset-md-2">
+    <div class="col-md-3 offset-md-2">
         <div class="card card-stats card-success card-round" style="width: 100%; min-height: 100px;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-3">
                         <div class="icon-big text-center">
                             <a href="javascript:void(0)" id="employees" class="card-link text-light">
-                            <i class="bi bi-people-fill"></i><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-</svg></a>
+                                <i class="bi bi-people-fill"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-3 col-stats">
-                        <!-- Empty column for spacing -->
-                    </div>
+                    <div class="col-3 col-stats"></div>
                     <div class="col-6 col-stats">
                         <div class="numbers mt-1">
                             <h4 class="fw-bold text-uppercase">Employees</h4>
-                            <h2 class="fw-bold text-uppercase"><?= number_format($total) ?></h2>
+                            <h2 class="fw-bold text-uppercase" id="employeesCount">0</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-	
-    <div class="col-md-3 offset-md--1">
+    
+    <div class="col-md-3">
         <div class="card card-stats card-primary card-round" style="width: 100%; min-height: 100px;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-3">
                         <div class="icon-big text-center">
                             <a href="javascript:void(0)" id="male" class="card-link text-light">
-                            <i class="bi bi-person-standing"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-standing" viewBox="0 0 16 16">
-  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0"/>
-</svg>
+                                <i class="bi bi-person-standing"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-standing" viewBox="0 0 16 16">
+                                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-3 col-stats">
-                        <!-- Empty column for spacing -->
-                    </div>
+                    <div class="col-3 col-stats"></div>
                     <div class="col-6 col-stats">
                         <div class="numbers">
                             <h4 class="fw-bold text-uppercase">Male</h4>
-                            <h2 class="fw-bold text-uppercase"><?= number_format($male + $female, ) ?></h2>
+                            <h2 class="fw-bold text-uppercase" id="maleCount">0</h2>
                         </div>
                     </div>
                 </div>
@@ -174,26 +173,25 @@ $conn->close();
         </div>
     </div>
 
-    <div class="col-md-3 offset-md--1">
+    <div class="col-md-3">
         <div class="card card-stats card-warning card-round" style="width: 100%; min-height: 100px;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-3">
                         <div class="icon-big text-center">
                             <a href="javascript:void(0)" id="female" class="card-link text-light">
-                            <i class="bi bi-person-standing-dress"></i><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-standing-dress" viewBox="0 0 16 16">
-  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z"/>
-</svg>
-                        </a>
+                                <i class="bi bi-person-standing-dress"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-standing-dress" viewBox="0 0 16 16">
+                                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-3 col-stats">
-                        <!-- Empty column for spacing -->
-                    </div>
+                    <div class="col-3 col-stats"></div>
                     <div class="col-6 col-stats">
                         <div class="numbers mt-1">
                             <h4 class="fw-bold text-uppercase">Female</h4>
-                            <h2 class="fw-bold text-uppercase"><?= number_format($female) ?></h2>
+                            <h2 class="fw-bold text-uppercase" id="femaleCount">0</h2>
                         </div>
                     </div>
                 </div>
@@ -219,31 +217,31 @@ $conn->close();
 										<div class="card-title">
                                             
                                         <div class="container">
-  <div class="dropdown">
-    <select id="statusFilter" class="form-control">
-        <option value="All">All</option>
-        <option value="Fit">Fit</option>
-        <!-- <option value="Unfit">Unfit</option> -->
-        <option value="On-Leave">On-Leave</option>
-        <option value="On Official Time">On Official Time</option>
-        <option value="On Official Business">On Official Business</option>
-        <optgroup label="Health Condition">
-          <option value="PWD">PWD</option>
-          <option value="Fever">Fever</option>
-          <option value="Asthma">Asthma</option>
-          <option value="Pregnant">Pregnant</option>
-          <option value="Allergies">Allergies</option>
-          <option value="Heart Disease">Heart Disease</option>
-          <option value="Cancer">Cancer</option>
-          <option value="Cardiovascular Disease">Cardiovascular Disease</option>
-          <option value="Diabetes">Diabetes</option>
-          <option value="Hypertension">Hypertension</option>
-          <option value="Injuries">Injuries</option>
-          <option value="Stroke">Stroke</option>
-        </optgroup>
-    </select>
-  </div>
-</div>
+                                        <div class="dropdown">
+                                            <select id="statusFilter" class="form-control">
+                                                <option value="All">All</option>
+                                                <option value="Fit">Fit</option>
+                                                <!-- <option value="Unfit">Unfit</option> -->
+                                                <option value="On-Leave">On-Leave</option>
+                                                <option value="On Official Time">On Official Time</option>
+                                                <option value="On Official Business">On Official Business</option>
+                                                <optgroup label="Health Condition">
+                                                <option value="PWD">PWD</option>
+                                                <option value="Fever">Fever</option>
+                                                <option value="Asthma">Asthma</option>
+                                                <option value="Pregnant">Pregnant</option>
+                                                <option value="Allergies">Allergies</option>
+                                                <option value="Heart Disease">Heart Disease</option>
+                                                <option value="Cancer">Cancer</option>
+                                                <option value="Cardiovascular Disease">Cardiovascular Disease</option>
+                                                <option value="Diabetes">Diabetes</option>
+                                                <option value="Hypertension">Hypertension</option>
+                                                <option value="Injuries">Injuries</option>
+                                                <option value="Stroke">Stroke</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        </div>
                                    
                             </div>
 										<!-- <?php if(isset($_SESSION['username'])):?>
@@ -361,114 +359,92 @@ $conn->close();
 	<script src="assets/js/plugin/datatables/datatables.min.js"></script>
     <script>
 $(document).ready(function() {
-    // Store original data
-    var originalData = $('#residenttable').DataTable().rows().data().toArray();
+    // Initialize DataTable and store original data
+    var oTable = $('#residenttable').DataTable({
+        "order": [[4, "asc"]],
+        dom: '<"row"<"col-md-6"l><"col-md-6"fB>>rtip',
+        buttons: [
+            { extend: 'copy', text: 'Copy', className: 'btn btn-secondary btn-sm' },
+            { extend: 'csv', text: 'CSV', className: 'btn btn-secondary btn-sm' },
+            { extend: 'excel', text: 'Excel', className: 'btn btn-secondary btn-sm' },
+            { extend: 'pdf', text: 'PDF', className: 'btn btn-secondary btn-sm' },
+            { extend: 'print', text: 'Print', className: 'btn btn-secondary btn-sm' }
+        ]
+    });
+    var originalData = oTable.rows().data().toArray();
 
-    // Function to filter table based on gender and status or to display all employees
-    function filterTable(gender, status) {
-        var oTable = $('#residenttable').DataTable();
-        oTable.clear().draw();
-        originalData.forEach(function(rowData) {
-            // Check if the gender column (index 5) matches the filter value and the status matches the selected status
-            if ((rowData[5] === gender || gender === 'All') && (status === 'All' || rowData[6] === status)) { // Assuming gender is in the 6th column (index 5) and status in the 7th column (index 6)
-                oTable.row.add(rowData);
+    function updateCounts(filteredData) {
+        var employeesCount = filteredData.length;
+        var maleCount = 0;
+        var femaleCount = 0;
+
+        filteredData.forEach(function(rowData) {
+            if (rowData[5] === 'Male') {
+                maleCount++;
+            } else if (rowData[5] === 'Female') {
+                femaleCount++;
             }
         });
-        oTable.draw();
+
+        console.log("Filtered Data:", filteredData);
+        console.log("Employees Count:", employeesCount);
+        console.log("Male Count:", maleCount);
+        console.log("Female Count:", femaleCount);
+
+        $("#employeesCount").text(employeesCount);
+        $("#maleCount").text(maleCount);
+        $("#femaleCount").text(femaleCount);
     }
 
-    // Event listener for Employees icon
+    function filterTable(gender, status) {
+        var filteredData = originalData.filter(function(rowData) {
+            return (gender === 'All' || rowData[5] === gender) && (status === 'All' || rowData[6] === status);
+        });
+
+        console.log("Filtered Data:", filteredData);
+
+        oTable.clear().rows.add(filteredData).draw();
+        updateCounts(filteredData);
+    }
+
     $('#employees').click(function() {
-        var statusFilter = $('#statusFilter').val(); // Get the selected status filter
-        filterTable('All', statusFilter); // Filter by all genders and the selected status
+        var statusFilter = $('#statusFilter').val();
+        filterTable('All', statusFilter);
     });
 
-    // Event listener for Male icon
     $('#male').click(function() {
-        var statusFilter = $('#statusFilter').val(); // Get the selected status filter
-        filterTable('Male', statusFilter); // Filter by male gender and the selected status
+        var statusFilter = $('#statusFilter').val();
+        filterTable('Male', statusFilter);
     });
 
-    // Event listener for Female icon
     $('#female').click(function() {
-        var statusFilter = $('#statusFilter').val(); // Get the selected status filter
-        filterTable('Female', statusFilter); // Filter by female gender and the selected status
+        var statusFilter = $('#statusFilter').val();
+        filterTable('Female', statusFilter);
     });
 
-    // Event listener for status filter dropdown
-    $("#statusFilter").change(function(){
-        var genderFilter;
+    $("#statusFilter").change(function() {
+        var genderFilter = 'All';
         if ($('#male').hasClass('active')) {
-            genderFilter = 'Male'; // Get the selected gender filter
+            genderFilter = 'Male';
         } else if ($('#female').hasClass('active')) {
-            genderFilter = 'Female'; // Get the selected gender filter
-        } else {
-            genderFilter = 'All'; // If no gender filter is active, filter by all genders
+            genderFilter = 'Female';
         }
-        var statusFilter = $(this).val(); // Get the selected status filter
-        filterTable(genderFilter, statusFilter); // Filter by the selected gender and status
+        var statusFilter = $(this).val();
+        filterTable(genderFilter, statusFilter);
     });
+
+    // Initial counts update
+    updateCounts(originalData);
 });
 </script>
 
 
-    <script>
+<!-- Include jQuery and DataTables library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
 $(document).ready(function() {
-    // Destroy existing DataTable instance
-    if ($.fn.DataTable.isDataTable('#residenttable')) {
-        $('#residenttable').DataTable().destroy();
-    }
-
-    // Reinitialize DataTable
-    $('#residenttable').DataTable({
-        "order": [[ 4, "asc" ]] // Your DataTable configuration options
-    });
-
-    // Store original data
-    var originalData = $('#residenttable').DataTable().rows().data().toArray();
-
-    $("#statusFilter").change(function(){
-        var filter = $(this).val();
-        filterTable(filter);
-    });
-
-    // Function to filter table based on status or to display all employees
-    function filterTable(filter) {
-        var oTable = $('#residenttable').DataTable();
-        oTable.clear().draw();
-        if (filter === "All") {
-            originalData.forEach(function(rowData) {
-                oTable.row.add(rowData);
-            });
-        } else {
-            originalData.forEach(function(rowData) {
-                // Check if the status column (index 6) contains the filter value
-                if (rowData[6] === filter) { // Assuming status is in the 7th column (index 6)
-                    oTable.row.add(rowData);
-                }
-            });
-        }
-        oTable.draw();
-    }
-
-    // Clear filters
-    $("#clearFilter").click(function(){
-        var oTable = $('#residenttable').DataTable();
-        oTable.clear().draw();
-        originalData.forEach(function(rowData) {
-            oTable.row.add(rowData);
-        });
-        oTable.draw();
-    });
-});
-    </script>
-
- <!-- Include jQuery and DataTables library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    
-    <script>
-  $(document).ready(function() {
     // Event listener for Count Data button
     $("#countButton").on('click', function() {
         var table = $('#residenttable').DataTable();
@@ -500,11 +476,11 @@ $(document).ready(function() {
         document.body.removeChild(downloadLink);
     }
 });
+</script>
 
-    </script>
 <!-- Include the provided JavaScript code -->
-<script>
-   $(document).ready(function() {
+<!-- <script>
+$(document).ready(function() {
     // Destroy existing DataTable instance if it exists
     if ($.fn.DataTable.isDataTable('#residenttable')) {
         $('#residenttable').DataTable().destroy();
@@ -542,9 +518,7 @@ $(document).ready(function() {
         ]
     });
 });
-
-    </script>
-
+</script> -->
 <!-- Include DataTables Buttons extension JS -->
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
@@ -553,76 +527,29 @@ $(document).ready(function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
-<!-- <script>
-    $(document).ready(function() {
-    // Store original data
-    var originalData = $('#residenttable').DataTable().rows().data().toArray();
-
- // Function to filter table based on gender, status, and health condition
-function filterTable(gender, status, healthCondition) {
-    var oTable = $('#residenttable').DataTable();
-    oTable.clear().draw();
-    originalData.forEach(function(rowData) {
-        // Check if the gender column (index 5), status column (index 6), and health condition columns (from index 7 onwards) match the filters
-        if ((gender === 'All' || rowData[5] === gender) &&
-            (status === 'All' || rowData[6] === status) &&
-            (healthCondition === 'All' || rowData.slice(7).includes(healthCondition))) {
-            oTable.row.add(rowData);
-        }
-    });
-    oTable.draw();
-}
-
-
-
-    // Event listener for status filter dropdown
-    $("#statusFilter").change(function(){
-        var genderFilter;
-        if ($('#male').hasClass('active')) {
-            genderFilter = 'Male'; // Get the selected gender filter
-        } else if ($('#female').hasClass('active')) {
-            genderFilter = 'Female'; // Get the selected gender filter
-        } else {
-            genderFilter = 'All'; // If no gender filter is active, filter by all genders
-        }
-        var statusFilter = $(this).val(); // Get the selected status filter
-        var healthConditionFilter = $('#healthConditionFilter').val(); // Get the selected health condition filter
-        filterTable(genderFilter, statusFilter, healthConditionFilter); // Filter by the selected gender, status, and health condition
-    });
-
-    // Event listener for health condition filter dropdown
-    $("#healthConditionFilter").change(function(){
-        var genderFilter;
-        if ($('#male').hasClass('active')) {
-            genderFilter = 'Male'; // Get the selected gender filter
-        } else if ($('#female').hasClass('active')) {
-            genderFilter = 'Female'; // Get the selected gender filter
-        } else {
-            genderFilter = 'All'; // If no gender filter is active, filter by all genders
-        }
-        var statusFilter = $('#statusFilter').val(); // Get the selected status filter
-        var healthConditionFilter = $(this).val(); // Get the selected health condition filter
-        filterTable(genderFilter, statusFilter, healthConditionFilter); // Filter by the selected gender, status, and health condition
-    });
-
-    // Event listener for "Health" option in status filter dropdown
-$("#statusFilter").change(function(){
-    var selectedStatus = $(this).val();
-    console.log("Selected status:", selectedStatus); // Log the selected status to the console
-    if (selectedStatus === 'Health') {
-        console.log("Health condition selected"); // Log a message indicating that "Health" option is selected
-        // If "Health" option is selected, filter the table to display only rows with health conditions
-        var genderFilter = $('#male').hasClass('active') ? 'Male' : ($('#female').hasClass('active') ? 'Female' : 'All');
-        var healthConditionFilter = $(this).val(); // Assuming "Health" is selected
-        console.log("Gender filter:", genderFilter); // Log the gender filter to the console
-        console.log("Health condition filter:", healthConditionFilter); // Log the health condition filter to the console
-        filterTable(genderFilter, 'All', healthConditionFilter);
+<!-- Additional code to manage counts -->
+<script>
+$(document).ready(function() {
+    // Function to update counts based on current filter
+    function updateCounts() {
+        var table = $('#residenttable').DataTable();
+        var filteredData = table.rows({ search: 'applied' }).data();
+        var totalEmployees = filteredData.count();
+        var maleCount = filteredData.filter(function(row) { return row[5] === 'Male'; }).count();
+        var femaleCount = filteredData.filter(function(row) { return row[5] === 'Female'; }).count();
+        
+        $("#employeesCount").text(totalEmployees);
+        $("#maleCount").text(maleCount);
+        $("#femaleCount").text(femaleCount);
     }
-});
 
+    // Call updateCounts whenever the table is drawn
+    $('#residenttable').on('draw.dt', function() {
+        updateCounts();
+    });
 });
+</script>
 
-</script> -->
 <script>
 $(document).ready(function(){
   $('.dropdown-submenu a.test').on("click", function(e){
