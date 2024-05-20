@@ -213,10 +213,6 @@ while ($row = $result7->fetch_assoc()) {
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="residenttable" class="display table table-hover">
-
-
-
-
 										<thead>
 											<tr>
 												<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'administrator') : ?>
@@ -225,7 +221,7 @@ while ($row = $result7->fetch_assoc()) {
 													<th scope="col" class="no-print"><label for="select-all"> <input type="checkbox" id="select-all" style="visibility: hidden;"></th>
 												<?php endif ?>
 												<th scope="col">Full Name</th>
-												<th scope="col">Department</th>
+												<th scope="col">Department and Office's</th>
 												<th scope="col">Age</th>
 												<th scope="col">Sex</th>
 												<th scope="col">Sports</th>

@@ -45,7 +45,7 @@ header('Content-Disposition: attachment; filename=teams.csv');
 $output = fopen('php://output', 'w');
 
 // Write headers to the CSV file
-fputcsv($output, array('First Name', 'Middle Name', 'Last Name', 'Employee ID', 'Department','Contact', 'Age', 'Sex', 'Status','Sports', 'Team'));
+fputcsv($output, array('First Name', 'Middle Name', 'Last Name', 'Employee ID', 'Department and Offices','Contact', 'Age', 'Sex', 'Status','Sports', 'Team'));
 
 // Write data to the CSV file
 if (count($users) > 0) {

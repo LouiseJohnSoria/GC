@@ -187,7 +187,7 @@ while ($row = $result3->fetch_assoc()) {
                                                             </th>
                                                             <th scope="col">Employee ID</th>
                                                             <th scope="col">Full Name</th>
-                                                            <th scope="col">Department</th>
+                                                            <th scope="col">Department and Office's</th>
                                                             <th scope="col">Contact</th>
                                                             <th scope="col">Age</th>
                                                             <th scope="col">Sex</th>

@@ -33,7 +33,7 @@ if ($result->num_rows > 0) {
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=employees.csv');
 $output = fopen('php://output', 'w');
-fputcsv($output, array('First Name','Middle Name', 'Last Name', 'Employee ID', 'Department','Contact', 'Age', 'Sex', 'Status','Sports', 'Team'));
+fputcsv($output, array('First Name','Middle Name', 'Last Name', 'Employee ID', 'Department and Offices','Contact', 'Age', 'Sex', 'Status','Sports', 'Team'));
 
 if (count($users) > 0) {
     foreach ($users as $row) {

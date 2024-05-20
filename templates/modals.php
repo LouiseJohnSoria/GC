@@ -294,7 +294,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>Department</label>
+                                        <label>Department and Office's</label>
                                         <select class="form-control" required name="dept">
                                             <option disabled selected>Select Department</option>
                                             <?php foreach ($dept as $row) : ?>
@@ -337,10 +337,23 @@
                                         <select class="form-control" name="stat" id="stat" required>
                                         <option disabled selected value="">Select Status</option>
                                             <option value="Fit">Fit</option>
-                                            <option value="Unfit">Unfit</option>
                                             <option value="On-Leave">On Leave</option>
                                             <option value="On Official Time ">On Official Time</option>
                                             <option value="On Official Business">On Official Business</option>
+                                            <option disabled value=""  class="text-danger">     ---Health Condition---</option>
+                                            <option value="PWD">PWD</option>
+                                            <option value="Fever">Fever</option>
+                                            <option value="Asthma">Asthma</option>
+                                            <option value="Pregnant">Pregnant</option>
+                                            <option value="Allergies">Allergies</option>
+                                            <option value="Heart Disease">Heart Disease</option>
+                                            <option value="Cancer">Cancer</option>
+                                            <option value="Cardiovascular Disease">Cardiovascular Disease</option>
+                                            <option value="Diabetes">Diabetes</option>
+                                            <option value="Hypertension">Hypertension</option>
+                                            <option value="Injuries">Injuries</option>
+                                            <option value="Stroke">Stroke</option>
+                                        </select>
                                         </select>
                                     </div>
                                 </div>
@@ -408,7 +421,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>Department</label>
+                                        <label>Department and Office's</label>
                                         <!-- <input name="dept" id="deptInput"> -->
                                         <select class="form-control" name="department" id="department" required>
                                             <!-- <option disabled selected>Select Department</option> -->
@@ -448,11 +461,22 @@
                                         <label>Status</label>
                                         <select class="form-control" name="stat" id="statedit" required>
                                             <option value="Fit">Fit</option>
-                                            <option value="Unfit">Unfit</option>
                                             <option value="On-Leave">On Leave</option>
                                             <option value="On Official Time ">On Official Time</option>
                                             <option value="On Official Business">On Official Business</option>
-                                            
+                                            <option disabled value=""  class="text-danger">     ---Health Condition---</option>
+                                            <option value="PWD">PWD</option>
+                                            <option value="Fever">Fever</option>
+                                            <option value="Asthma">Asthma</option>
+                                            <option value="Pregnant">Pregnant</option>
+                                            <option value="Allergies">Allergies</option>
+                                            <option value="Heart Disease">Heart Disease</option>
+                                            <option value="Cancer">Cancer</option>
+                                            <option value="Cardiovascular Disease">Cardiovascular Disease</option>
+                                            <option value="Diabetes">Diabetes</option>
+                                            <option value="Hypertension">Hypertension</option>
+                                            <option value="Injuries">Injuries</option>
+                                            <option value="Stroke">Stroke</option>
                                         </select>
                                     </div>
                                 </div>
