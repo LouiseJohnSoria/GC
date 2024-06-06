@@ -364,11 +364,61 @@ $(document).ready(function() {
         "order": [[4, "asc"]],
         dom: '<"row"<"col-md-6"l><"col-md-6"fB>>rtip',
         buttons: [
-            { extend: 'copy', text: 'Copy', className: 'btn btn-secondary btn-sm' },
-            { extend: 'csv', text: 'CSV', className: 'btn btn-secondary btn-sm' },
-            { extend: 'excel', text: 'Excel', className: 'btn btn-secondary btn-sm' },
-            { extend: 'pdf', text: 'PDF', className: 'btn btn-secondary btn-sm' },
-            { extend: 'print', text: 'Print', className: 'btn btn-secondary btn-sm' }
+            {
+                extend: 'copy',
+                text: 'Copy',
+                className: 'btn btn-secondary btn-sm'
+            },
+            {
+                extend: 'csv',
+                text: 'CSV',
+                className: 'btn btn-secondary btn-sm',
+                title: function () {
+                    var filename = prompt('Enter the file name for CSV export:');
+                    return filename ? filename : null;
+                },
+                action: function (e, dt, button, config) {
+                    var filename = config.title();
+                    if (filename) {
+                        $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, $.extend({}, config, { title: filename }));
+                    }
+                }
+            },
+            {
+                extend: 'excel',
+                text: 'Excel',
+                className: 'btn btn-secondary btn-sm',
+                title: function () {
+                    var filename = prompt('Enter the file name for Excel export:');
+                    return filename ? filename : null;
+                },
+                action: function (e, dt, button, config) {
+                    var filename = config.title();
+                    if (filename) {
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, $.extend({}, config, { title: filename }));
+                    }
+                }
+            },
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                className: 'btn btn-secondary btn-sm',
+                title: function () {
+                    var filename = prompt('Enter the file name for PDF export:');
+                    return filename ? filename : null;
+                },
+                action: function (e, dt, button, config) {
+                    var filename = config.title();
+                    if (filename) {
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, $.extend({}, config, { title: filename }));
+                    }
+                }
+            },
+            {
+                extend: 'print',
+                text: 'Print',
+                className: 'btn btn-secondary btn-sm'
+            }
         ]
     });
     var originalData = oTable.rows().data().toArray();
@@ -436,6 +486,7 @@ $(document).ready(function() {
     // Initial counts update
     updateCounts(originalData);
 });
+
 </script>
 
 

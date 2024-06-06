@@ -648,22 +648,71 @@ while ($row = $result7->fetch_assoc()) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
 <script>
-   $(document).ready(function() {
+$(document).ready(function() {
     var table = $('#residenttable').DataTable({
         lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
         paging: true,
         info: true,
         dom: '<"row"<"col-md-6"l><"col-md-6"fB>>rtip',
         buttons: [
-            { extend: 'copy', text: 'Copy', className: 'btn btn-secondary btn-sm' },
-            { extend: 'csv', text: 'CSV', className: 'btn btn-secondary btn-sm' },
-            { extend: 'excel', text: 'Excel', className: 'btn btn-secondary btn-sm' },
-            { extend: 'pdf', text: 'PDF', className: 'btn btn-secondary btn-sm' },
-            { extend: 'print', text: 'Print', className: 'btn btn-secondary btn-sm' }
+            {
+                extend: 'copy',
+                text: 'Copy',
+                className: 'btn btn-secondary btn-sm'
+            },
+            {
+                extend: 'csv',
+                text: 'CSV',
+                className: 'btn btn-secondary btn-sm',
+                title: function () {
+                    var filename = prompt('Enter the file name for CSV export:');
+                    return filename ? filename : null;
+                },
+                action: function (e, dt, button, config) {
+                    var filename = config.title();
+                    if (filename) {
+                        $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, $.extend({}, config, { title: filename }));
+                    }
+                }
+            },
+            {
+                extend: 'excel',
+                text: 'Excel',
+                className: 'btn btn-secondary btn-sm',
+                title: function () {
+                    var filename = prompt('Enter the file name for Excel export:');
+                    return filename ? filename : null;
+                },
+                action: function (e, dt, button, config) {
+                    var filename = config.title();
+                    if (filename) {
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, $.extend({}, config, { title: filename }));
+                    }
+                }
+            },
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                className: 'btn btn-secondary btn-sm',
+                title: function () {
+                    var filename = prompt('Enter the file name for PDF export:');
+                    return filename ? filename : null;
+                },
+                action: function (e, dt, button, config) {
+                    var filename = config.title();
+                    if (filename) {
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, $.extend({}, config, { title: filename }));
+                    }
+                }
+            },
+            {
+                extend: 'print',
+                text: 'Print',
+                className: 'btn btn-secondary btn-sm'
+            }
         ]
     });
 
-    // Move the updateCounts function inside the document ready block
     function updateCounts() {
         var filteredData = table.rows({ search: 'applied' }).data().toArray();
         var maleCount = 0;
@@ -684,15 +733,14 @@ while ($row = $result7->fetch_assoc()) {
     }
 
     console.log("Table initialized: ", table);
-    // Filter by Team
+
     $('#filterContainer').append('<p class="mx-4 mt-4">Team Name: <select id="teamFilter"></select></p>');
     $('#teamFilter').on('change', function() {
         var val = $.fn.dataTable.util.escapeRegex($(this).val());
         table.column(6).search(val ? '^' + val + '$' : '', true, false).draw();
-        updateCounts(table); // Update counts after filtering
+        updateCounts();
     });
 
-    // Populate team filter options
     <?php if (isset($_SESSION['username']) && $_SESSION['role'] === 'team leader') { ?>
         var teamName = "<?php echo $teamName; ?>";
         $('#teamFilter').append('<option value="' + teamName + '">' + teamName + '</option>');
@@ -704,7 +752,6 @@ while ($row = $result7->fetch_assoc()) {
         });
     <?php } ?>
 
-    // Count data
     $("#countButton").on('click', function() {
         var filteredData = table.rows({ search: 'applied' }).data();
         var rowCount = filteredData.count();
@@ -712,7 +759,6 @@ while ($row = $result7->fetch_assoc()) {
         $('#countModal').modal('show');
     });
 
-    // Generate CSV Report
     $('#generateReportBtn').click(function() {
         var filteredData = table.rows({ search: 'applied' }).data().toArray();
         var csvData = "Employee ID,Full Name,Department,Contact,Age,Gender,Status,Team\n";
@@ -723,38 +769,42 @@ while ($row = $result7->fetch_assoc()) {
     });
 
     function initiateDownload(data) {
-        var downloadLink = document.createElement('a');
-        downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
-        downloadLink.download = 'employee_report.csv';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
+        var filename = prompt('Enter the file name for the CSV report:');
+        if (filename) {
+            filename += '.csv';
+            var downloadLink = document.createElement('a');
+            downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
+            downloadLink.download = filename;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
     }
 
-    // Gender Filtering Logic
     $('#employees').click(function() {
         $('#employees, #male, #female').removeClass('active');
-        table.column(4).search('').draw(); // Clear gender filter
-        updateCounts(table); // Update counts
+        $(this).addClass('active');
+        table.column(4).search('').draw();
+        updateCounts();
     });
 
     $('#male').click(function() {
         $('#employees, #male, #female').removeClass('active');
         $(this).addClass('active');
-        table.column(4).search('^Male$', true, false).draw(); // Filter by Male
-        updateCounts(table); // Update counts
+        table.column(4).search('^Male$', true, false).draw();
+        updateCounts();
     });
 
     $('#female').click(function() {
         $('#employees, #male, #female').removeClass('active');
         $(this).addClass('active');
-        table.column(4).search('^Female$', true, false).draw(); // Filter by Female
-        updateCounts(table); // Update counts
+        table.column(4).search('^Female$', true, false).draw();
+        updateCounts();
     });
 
-    // Initial count update
-    updateCounts(table);
+    updateCounts();
 });
+
 
 </script>
 
